@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xin lỗi</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  text-align:center;
+  overflow:hidden;
+  background:#fff0f5;
+}
+
+/* nền tim bay */
+.heart{
+  position:fixed;
+  bottom:-40px;
+  color:#ff6b81;
+  font-size:20px;
+  animation:float linear infinite;
+}
+@keyframes float{
+  to{ transform:translateY(-110vh); opacity:0; }
+}
+
+h1{ color:#ff4d6d; margin-top:30px; }
+img{ width:220px; margin:15px 0; }
+
+button{
+  padding:12px 22px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  margin:10px;
+}
+#agree{ background:#ff4d6d; color:white; position:relative; z-index:1; }
+#disagree{ background:#ddd; position:relative; z-index:2; }
+
+#final{ display:none; margin-top:40px; }
+</style>
+</head>
+
+<body>
+
+<h1 id="title">cho quốc văn xin lỗi điii</h1>
+
+<!-- Capoo khóc -->
+<img id="cry" src="https://media.tenor.com/0AVbKGY_MxMAAAAi/capoo-bugcat.gif">
+
+<div id="buttons">
+  <button id="agree">Đồng ý</button>
+  <button id="disagree">Không đồng ý</button>
+</div>
+
+<div id="final">
+  <h1>anh hứa sẽ kh vay nũa dauuu a yêu emm &gt;&lt;</h1>
+  <img src="https://media.tenor.com/3B1JjKQ9zWQAAAAC/capoo-love.gif">
+</div>
+
+<script>
+/* tạo tim bay */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(15+Math.random()*25)+"px";
+  h.style.animationDuration=(3+Math.random()*5)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8000);
+},300);
+
+let agree=document.getElementById("agree");
+let disagree=document.getElementById("disagree");
+let scale=1;
+
+/* bấm không đồng ý -> chữ đồng ý to ngẫu nhiên */
+disagree.onclick=()=>{
+  scale+=Math.random()*0.8+0.3; 
+  agree.style.transform=`scale(${scale})`;
+
+  if(scale>8){
+    agree.style.position="fixed";
+    agree.style.left="0";
+    agree.style.top="0";
+    agree.style.width="100vw";
+    agree.style.height="100vh";
+    agree.style.fontSize="60px";
+    agree.style.zIndex="1";
+  }
+};
+
+/* bấm đồng ý -> hiện lời yêu */
+agree.onclick=()=>{
+  document.getElementById("title").style.display="none";
+  document.getElementById("cry").style.display="none";
+  document.getElementById("buttons").style.display="none";
+  document.getElementById("final").style.display="block";
+};
+</script>
+
+</body>
+</html>
