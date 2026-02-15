@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Xin lỗi Quốc Vân</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background:#f6e6ea;
+    overflow:hidden;
+    font-family:sans-serif;
+    text-align:center;
+}
+
+h1{
+    margin-top:40px;
+    color:#ff4d6d;
+}
+
+img{
+    width:220px;
+    margin:20px;
+}
+
+button{
+    padding:12px 22px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    margin:10px;
+}
+
+#yes{
+    background:#ff4d6d;
+    color:white;
+}
+
+#no{
+    background:#ccc;
+}
+
+/* tim bay */
+.heart{
+    position:absolute;
+    color:#ff4d6d;
+    animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+    from{ transform:translateY(-50px); opacity:1; }
+    to{ transform:translateY(100vh); opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>cho quốc vân xin lỗi điii</h1>
+
+<!-- GIF 1 -->
+<img src="img/gif1.gif">
+
+<!-- GIF 2 -->
+<img src="img/gif2.gif">
+
+<br>
+
+<button id="no">Không đồng ý</button>
+<button id="yes">Đồng ý</button>
+
+<script>
+
+// nút chạy trốn
+const noBtn=document.getElementById("no");
+noBtn.onmouseover=()=>{
+    noBtn.style.position="absolute";
+    noBtn.style.left=Math.random()*80+"%";
+    noBtn.style.top=Math.random()*80+"%";
+}
+
+// tạo tim rơi
+setInterval(()=>{
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤";
+    heart.style.left=Math.random()*100+"%";
+    heart.style.fontSize=(Math.random()*20+15)+"px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),6000);
+},400);
+
+</script>
+
+</body>
+</html>
