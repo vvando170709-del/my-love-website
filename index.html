@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xin lỗi em</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    font-family:sans-serif;
+    background:#ffeef2;
+}
+
+/* chữ trên */
+h1{
+    color:#ff4d6d;
+    margin-bottom:20px;
+    text-align:center;
+}
+
+/* gif */
+img{
+    width:220px;
+    margin:20px 0;
+}
+
+/* nút */
+button{
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    margin:10px;
+}
+
+#agree{
+    background:#ff4d6d;
+    color:white;
+    position:absolute;
+}
+
+#no{
+    background:#ccc;
+}
+
+/* trái tim bay */
+.heart{
+    position:absolute;
+    color:#ff7b9c;
+    font-size:20px;
+    animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+    from{ transform:translateY(-10vh); opacity:1;}
+    to{ transform:translateY(110vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="title">cho quốc văn xin lỗi điii</h1>
+
+<img id="gif" src="cry.png">
+
+<div>
+    <button id="no">Không đồng ý</button>
+    <button id="agree">Đồng ý</button>
+</div>
+
+<script>
+const agree = document.getElementById("agree");
+const no = document.getElementById("no");
+let size = 18;
+
+no.onclick = () => {
+    size += Math.random()*40;
+    agree.style.fontSize = size + "px";
+
+    agree.style.left = Math.random()*80 + "%";
+    agree.style.top = Math.random()*80 + "%";
+
+    if(size > 250){
+        agree.style.fontSize = "100vw";
+        agree.style.height = "100vh";
+        agree.style.left = "0";
+        agree.style.top = "0";
+    }
+};
+
+agree.onclick = () => {
+    document.getElementById("title").innerText =
+        "anh hứa sẽ kh vay nữa đâu a yêu emm ><";
+    document.getElementById("gif").src = "love.png";
+    no.style.display="none";
+    agree.style.display="none";
+};
+
+/* tạo trái tim bay */
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.className="heart";
+    heart.innerText="❤";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(10+Math.random()*30)+"px";
+    heart.style.animationDuration=(3+Math.random()*5)+"s";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),7000);
+}
+setInterval(createHeart,400);
+</script>
+
+</body>
+</html>
