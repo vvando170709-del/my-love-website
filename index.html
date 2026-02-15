@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xin lỗi</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  text-align:center;
+  overflow:hidden;
+  background:#fff0f5;
+}
+
+/* tim bay */
+.heart{
+  position:fixed;
+  bottom:-40px;
+  color:#ff6b81;
+  font-size:20px;
+  animation:float linear infinite;
+}
+@keyframes float{
+  to{ transform:translateY(-110vh); opacity:0; }
+}
+
+h1{ color:#ff4d6d; margin-top:30px; }
+img{ width:240px; margin:15px 0; }
+
+button{
+  padding:12px 22px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  margin:10px;
+}
+
+/* nút đồng ý */
+#agree{
+  background:#ff4d6d;
+  color:white;
+  position:fixed;
+  left:50%;
+  top:60%;
+  transform:translate(-50%,-50%) scale(1);
+  z-index:3;
+}
+
+/* nút không đồng ý */
+#disagree{
+  background:#ddd;
+  position:relative;
+  z-index:1;
+}
+
+#final{ display:none; margin-top:40px; }
+</style>
+</head>
+
+<body>
+
+<h1 id="title">cho quốc văn xin lỗi điii</h1>
+
+<!-- sticker trước khi đồng ý -->
+<img id="cry" src="cry.png">
+
+<div id="buttons">
+  <button id="agree">Đồng ý</button>
+  <button id="disagree">Không đồng ý</button>
+</div>
+
+<div id="final">
+  <h1>anh hứa sẽ kh vay nũa dauuu a yêu emm ><</h1>
+  <!-- sticker sau khi đồng ý -->
+  <img src="hug.png">
+</div>
+
+<script>
+/* tim bay */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(15+Math.random()*25)+"px";
+  h.style.animationDuration=(3+Math.random()*5)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8000);
+},300);
+
+let agree=document.getElementById("agree");
+let disagree=document.getElementById("disagree");
+let scale=1;
+
+/* bấm không đồng ý -> nút đồng ý to + nhảy random */
+disagree.onclick=()=>{
+  scale+=Math.random()*1.5+0.5;
+  let x=Math.random()*80+10;
+  let y=Math.random()*70+15;
+
+  agree.style.left=x+"vw";
+  agree.style.top=y+"vh";
+  agree.style.transform=`translate(-50%,-50%) scale(${scale})`;
+
+  /* khi đủ lớn -> chiếm màn hình */
+  if(scale>10){
+    agree.style.left="50%";
+    agree.style.top="50%";
+    agree.style.width="100vw";
+    agree.style.height="100vh";
+    agree.style.fontSize="70px";
+    agree.style.transform="translate(-50%,-50%)";
+  }
+};
+
+/* bấm đồng ý */
+agree.onclick=()=>{
+  document.getElementById("title").style.display="none";
+  document.getElementById("cry").style.display="none";
+  document.getElementById("buttons").style.display="none";
+  document.getElementById("final").style.display="block";
+};
+</script>
+
+</body>
+</html>
